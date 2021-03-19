@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'parser_manager.dart';
 
 class JsonWidget extends StatelessWidget {
-  JsonWidget(this.json);
+  JsonWidget(String json) : _json = json;
 
-  final String json;
+  final String _json;
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> map = jsonDecode(json);
-    return ParseManager.parse(map);
+    final map = jsonDecode(_json);
+    return ParseManager.parse(map)!;
   }
 }

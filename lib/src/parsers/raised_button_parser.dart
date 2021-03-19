@@ -11,7 +11,7 @@ class RaisedButtonParser extends WidgetParser {
 
     return Builder(
       builder: (context) {
-        return RaisedButton(
+        return ElevatedButton(
           onPressed:
               onPressed != null ? () => navigate(context, onPressed) : null,
           child: map.parse('child'),

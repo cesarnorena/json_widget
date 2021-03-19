@@ -26,19 +26,18 @@ class ParseManager {
     ContainerParser(),
   ];
 
-  static Widget parse(Map<String, dynamic> map) {
-    if (map == null) return null;
-    final parser = _parsers.firstWhere(
-      (parser) => parser.widget == map['widget'],
+  static Widget? parse(Map<String, dynamic> map) {
+    // ignore: unnecessary_cast
+    final parser = (_parsers as List<WidgetParser?>).firstWhere(
+      (parser) => parser?.widget == map['widget'],
       orElse: () => null,
     );
     return parser?.parse(map);
   }
 
   static List<Widget> parseList(List list) {
-    if (list == null) return null;
-    final widgetList = list.map((e) => parse(e)).toList();
-    return widgetList..removeWhere((e) => e == null);
+    final widgets = list.map((e) => parse(e)).where((e) => e != null);
+    return widgets.toList() as List<Widget>;
   }
 
   static void addParser(WidgetParser parser) => _parsers.add(parser);

@@ -8,7 +8,7 @@ class ScaffoldParser extends WidgetParser {
   @override
   Widget parse(Map<String, dynamic> map) {
     return Scaffold(
-      appBar: map.parse('appBar'),
+      appBar: map.parse('appBar') as PreferredSizeWidget?,
       body: map.parse('body'),
     );
   }

@@ -11,7 +11,7 @@ abstract class WidgetParser {
 }
 
 extension MapParser on Map<String, dynamic> {
-  Widget parse(String name) {
+  Widget? parse(String name) {
     return ParseManager.parse(this[name]);
   }
 
