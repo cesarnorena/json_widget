@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:example/src/data/HomeRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:json_widget/json_widget.dart';
 
@@ -11,67 +10,10 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePageScreen> {
+  final _repository = HomeRepository();
+
   @override
   Widget build(BuildContext context) {
-    final mockAppBar = {
-      'widget': 'AppBar',
-      'title': {
-        'widget': 'Text',
-        'data': 'JsonWidget 🤓',
-      },
-      'centerTitle': true,
-    };
-
-    final mockContentResult = {
-      'widget': 'Scaffold',
-      'appBar': mockAppBar,
-      'body': {
-        'widget': 'Container',
-        'padding': 24.0,
-        'child': {
-          'widget': 'Text',
-          'data': 'It has been a while without seeing you here',
-        }
-      }
-    };
-
-    final mockContent = jsonEncode({
-      'widget': 'Scaffold',
-      'appBar': mockAppBar,
-      'body': {
-        'widget': 'Container',
-        'padding': 24.0,
-        'child': {
-          'widget': 'Column',
-          'children': [
-            {
-              'widget': 'Text',
-              'data': 'Welcome back',
-            },
-            {
-              'widget': 'TextField',
-              'hintText': 'User',
-            },
-            {
-              'widget': 'TextField',
-              'hintText': 'Password',
-            },
-            {
-              'widget': 'Container',
-              'margin': 16.0,
-              'child': {
-                'widget': 'RaisedButton',
-                'child': {
-                  'widget': 'Text',
-                  'data': 'Login',
-                },
-                'onPressed': mockContentResult,
-              }
-            }
-          ]
-        },
-      },
-    });
-    return JsonWidget(mockContent);
+    return JsonWidget(_repository.get());
   }
 }
